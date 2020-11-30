@@ -7,22 +7,81 @@
     tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/button_gun_bierie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/gun_bierie"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_sem"
+        app:layout_constraintBottom_toTopOf="@id/button_tukkie_doen"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintEnd_toStartOf="@id/button_leer_japans"
+        />
 
-    <TextView
-        android:id="@+id/textview_first"
+    <Button
+        android:id="@+id/button_lekker_dansen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        android:text="@string/lekker_dansen"
+        app:layout_constraintTop_toBottomOf="@id/imageview_sem"
+        app:layout_constraintBottom_toTopOf="@id/button_leer_japans"
+        app:layout_constraintStart_toEndOf="@id/button_gun_bierie"
         app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/button_tukkie_doen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tukkie_doen"
+        app:layout_constraintTop_toBottomOf="@id/button_gun_bierie"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/button_leer_japans"
+        />
+
+    <Button
+        android:id="@+id/button_leer_japans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/leer_japans"
+        app:layout_constraintTop_toBottomOf="@id/button_lekker_dansen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_gun_bierie"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/imageview_sem"
+        android:layout_width="429dp"
+        android:layout_height="414dp"
+        android:src="@drawable/sem"
+        app:layout_constraintBottom_toTopOf="@+id/button_gun_bierie"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/zzz_gif"
+        android:layout_width="165dp"
+        android:layout_height="155dp"
+        android:src="@drawable/zzz"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/imageview_sem"
+        app:layout_constraintTop_toTopOf="@id/imageview_sem"
+        />
+
+    <ImageView
+        android:id="@+id/bierie"
+        android:layout_width="145dp"
+        android:layout_height="141dp"
+        android:foregroundGravity="center"
+        android:visibility="gone"
+        android:rotation="0"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:src="@drawable/bierie"
+        app:layout_constraintBottom_toBottomOf="@id/imageview_sem"
+        app:layout_constraintStart_toStartOf="@id/imageview_sem"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
