@@ -1,6 +1,8 @@
 package com.example.semsurprise
 
+import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,8 +45,12 @@ class FirstFragment : Fragment() {
         val rotateHeen = RotateAnimation(bierieIV.rotation, bierieIV.rotation + 90, Animation.RELATIVE_TO_SELF, 1.2f, Animation.RELATIVE_TO_SELF, 0.3f)
         rotateHeen.duration = 1500
         rotateHeen.startOffset = 3700
+        rotateHeen.isFillEnabled = true
+        rotateHeen.fillBefore = true
+        rotateHeen.fillAfter = true
         rotateHeen.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {
+                bierieIV.rotation = 0f
                 bierieIV.visibility = View.VISIBLE
                 MediaPlayer.create(context, R.raw.lekker_pilsje_drinken).start()
             }
@@ -53,13 +59,15 @@ class FirstFragment : Fragment() {
             }
             override fun onAnimationEnd(p0: Animation?) {
                 // empty
-                bierieIV.visibility = View.GONE
             }
         })
 
         val rotateBack = RotateAnimation(bierieIV.rotation, bierieIV.rotation - 90, Animation.RELATIVE_TO_SELF, 1.2f, Animation.RELATIVE_TO_SELF, 0.3f)
         rotateBack.duration = 1500
         rotateBack.startOffset = rotateHeen.startOffset + rotateHeen.duration + 800
+        rotateBack.isFillEnabled = true
+        rotateBack.fillBefore = true
+        rotateBack.fillAfter = true
         rotateBack.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(p0: Animation?) {
                 // empty
@@ -77,10 +85,9 @@ class FirstFragment : Fragment() {
         drinkBierieSet.addAnimation(rotateHeen)
         drinkBierieSet.addAnimation(rotateBack)
         drinkBierieSet.interpolator = LinearInterpolator()
-        drinkBierieSet.isFillEnabled = true
-        drinkBierieSet.fillAfter = true
 
-        view.findViewById<Button>(R.id.button_gun_bierie).setOnClickListener {
+        val buttonGunBierie = view.findViewById<Button>(R.id.button_gun_bierie)
+        buttonGunBierie.setOnClickListener {
             if (isSleeping) {
                 Toast.makeText(context, "Sem wil geen bier tijdens het slapen", Toast.LENGTH_SHORT).show()
             } else {
@@ -103,7 +110,6 @@ class FirstFragment : Fragment() {
                 }
                 1 -> { // Slapen
                     isSleeping = true
-                    bierieIV.visibility = View.GONE
                     semIV.setImageResource(R.drawable.sem_moe)
                     buttonTukkieDoen.text = getString(R.string.wakker_maken)
                     zzzGIV.visibility = View.VISIBLE
@@ -111,10 +117,25 @@ class FirstFragment : Fragment() {
                 }
             }
         }
-//        view.findViewById<Button>(R.id.button_leer_japans).setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
 
+        val buttonLekkerDansen = view.findViewById<Button>(R.id.button_lekker_dansen)
+        buttonLekkerDansen.setOnClickListener {
+            val elfDansUrl = when ((0..6).random()) {
+                0 -> "https://elfyourself.com?mId=49314"
+                1 -> "https://elfyourself.com?mId=50183"
+                2 -> "https://elfyourself.com?mId=50188"
+                3 -> "https://elfyourself.com?mId=50189"
+                4 -> "https://elfyourself.com?mId=50192"
+                5 -> "https://elfyourself.com?mId=50198"
+                else -> "https://elfyourself.com?mId=50201"
+            }
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(elfDansUrl))
+            startActivity(browserIntent)
+        }
+
+        val buttonLeerJapans = view.findViewById<Button>(R.id.button_leer_japans)
+        buttonLeerJapans.setOnClickListener {
+            // todo: implement method
+        }
     }
-
 }
