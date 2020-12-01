@@ -71,6 +71,25 @@
         app:layout_constraintTop_toTopOf="@id/imageview_sem"
         />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/imageview_textcloud"
+        android:layout_width="225dp"
+        android:paddingTop="8dp"
+        android:paddingRight="28dp"
+        android:paddingLeft="40dp"
+        android:paddingBottom="18dp"
+        android:visibility="gone"
+        android:layout_height="114dp"
+        android:background="@drawable/text_cloud"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:lines="2"
+        android:text="@string/ping_pong"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="@id/imageview_sem"
+        app:layout_constraintTop_toTopOf="@id/imageview_sem" />
+
     <ImageView
         android:id="@+id/bierie"
         android:layout_width="145dp"

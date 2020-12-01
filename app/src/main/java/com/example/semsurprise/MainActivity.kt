@@ -3,6 +3,7 @@ package com.example.semsurprise
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -25,7 +26,14 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                Toast.makeText(
+                    baseContext,
+                    "niet hopen dat ik dit heb geimplementeerd",
+                    Toast.LENGTH_SHORT
+                ).show()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
