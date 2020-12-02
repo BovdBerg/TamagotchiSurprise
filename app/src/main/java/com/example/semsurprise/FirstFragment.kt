@@ -157,8 +157,6 @@ class FirstFragment : Fragment() {
                 hideViews()
                 dorst_bool = true
                 bierieIV.startAnimation(drinkBierieSet)
-                // todo: bug dat biertje eerste keer verkeerd draait
-                // todo: add slurp soundeffect
             }
         }
 
@@ -240,8 +238,6 @@ class FirstFragment : Fragment() {
                 japans_check.setImageResource(R.drawable.checkmark)
             }
         }
-        // todo: add app logo
-        // todo: health bars
     }
 
     private fun hideViews() {
