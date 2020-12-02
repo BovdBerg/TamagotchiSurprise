@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "485018034174",
+    "firebase_url": "https://semmii-3976e.firebaseio.com",
+    "project_id": "semmii-3976e",
+    "storage_bucket": "semmii-3976e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485018034174:android:441b0974d4842081e2aaaf",
+        "android_client_info": {
+          "package_name": "com.example.semsurprise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485018034174-cikamvsgov8acs3k9njrvcnifr4r9141.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFWRjS_EAfPoPPfLNZDQoSn0UENdzhgm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485018034174-cikamvsgov8acs3k9njrvcnifr4r9141.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

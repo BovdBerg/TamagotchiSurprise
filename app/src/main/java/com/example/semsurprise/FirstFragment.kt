@@ -58,8 +58,7 @@ class FirstFragment : Fragment() {
             } else {
                 Handler().postDelayed({
                     moeheid_check.setImageResource(R.drawable.cross)
-                }, 2 * 1000)  // todo: longer delay
-//                }, 16*60*60*1000)
+                }, 16*60*60*1000)
             }
             field = value
         }
