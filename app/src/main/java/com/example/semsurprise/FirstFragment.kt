@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,9 @@ import pl.droidsonroids.gif.GifImageView
  */
 class FirstFragment : Fragment() {
 
+    private lateinit var japans_check: ImageView
+    private lateinit var moeheid_check: ImageView
+    private lateinit var dorst_check: ImageView
     private lateinit var buttonLeerJapans: Button
     private lateinit var buttonLekkerDansen: Button
     private lateinit var buttonGunBierie: Button
@@ -37,6 +41,38 @@ class FirstFragment : Fragment() {
     private lateinit var bierieIV: ImageView
     private lateinit var drinkBierieSet: AnimationSet
     private var isSleeping = false
+    private var dorst_bool = false
+        set(value) {
+            if (value) {
+                dorst_check.setImageResource(R.drawable.checkmark)
+                Handler().postDelayed({
+                    dorst_check.setImageResource(R.drawable.cross)
+                }, 2*60*60*1000)
+            }
+            field = value
+        }
+    private var moeheid_bool = false
+        set(value) {
+            if (value) {
+                moeheid_check.setImageResource(R.drawable.checkmark)
+            } else {
+                Handler().postDelayed({
+                    moeheid_check.setImageResource(R.drawable.cross)
+                }, 2 * 1000)  // todo: longer delay
+//                }, 16*60*60*1000)
+            }
+            field = value
+        }
+    private var japans_bool = false
+        set(value) {
+            if (value) {
+                japans_check.setImageResource(R.drawable.checkmark)
+                Handler().postDelayed({
+                    japans_check.setImageResource(R.drawable.cross)
+                }, 6*60*60*1000)
+            }
+            field = value
+        }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -54,9 +90,16 @@ class FirstFragment : Fragment() {
         semIV = view.findViewById<View>(R.id.imageview_sem) as ImageView
         zzzGIV = view.findViewById<View>(R.id.zzz_gif) as GifImageView
         textCloudTV = view.findViewById<View>(R.id.imageview_textcloud) as TextView
+        dorst_check = view.findViewById<View>(R.id.check_dorst) as ImageView
+        moeheid_check = view.findViewById<View>(R.id.check_moeheid) as ImageView
+        japans_check = view.findViewById<View>(R.id.check_japans) as ImageView
         slaapLiedjeAudio = MediaPlayer.create(context, R.raw.slaap_kindje_slaap)
         lekkerPilsjeAudio = MediaPlayer.create(context, R.raw.lekker_pilsje_drinken)
         dasLekkerAudio = MediaPlayer.create(context, R.raw.ah_das_lekker)
+
+        dorst_bool = true
+        moeheid_bool = false
+        japans_bool = true
 
         val rotateHeen = RotateAnimation(bierieIV.rotation, bierieIV.rotation + 90, Animation.RELATIVE_TO_SELF, 1.2f, Animation.RELATIVE_TO_SELF, 0.3f)
         rotateHeen.duration = 1500
@@ -98,6 +141,7 @@ class FirstFragment : Fragment() {
                 dasLekkerAudio = MediaPlayer.create(context, R.raw.ah_das_lekker)
                 dasLekkerAudio.start()
                 bierieIV.visibility = View.GONE
+                dorst_check.setImageResource(R.drawable.checkmark)
             }
         })
 
@@ -106,12 +150,13 @@ class FirstFragment : Fragment() {
         drinkBierieSet.addAnimation(rotateBack)
         drinkBierieSet.interpolator = LinearInterpolator()
 
-        buttonGunBierie = view.findViewById<Button>(R.id.button_gun_bierie)
+        buttonGunBierie = view.findViewById(R.id.button_gun_bierie)
         buttonGunBierie.setOnClickListener {
             if (isSleeping) {
                 Toast.makeText(context, "Sem wil geen bier tijdens het slapen", Toast.LENGTH_SHORT).show()
             } else {
                 hideViews()
+                dorst_bool = true
                 bierieIV.startAnimation(drinkBierieSet)
                 // todo: bug dat biertje eerste keer verkeerd draait
                 // todo: add slurp soundeffect
@@ -119,21 +164,23 @@ class FirstFragment : Fragment() {
         }
 
         var counter = 0
-        buttonTukkieDoen = view.findViewById<Button>(R.id.button_tukkie_doen)
+        buttonTukkieDoen = view.findViewById(R.id.button_tukkie_doen)
         buttonTukkieDoen.setOnClickListener {
             when (counter) {
                 0 -> { // Wakker
                     hideViews()
                     isSleeping = false
-                    semIV.setImageResource(R.drawable.sem)
+                    moeheid_bool = false
+                    semIV.setImageResource(R.drawable.sem_kawaii)
                     buttonTukkieDoen.text = getString(R.string.tukkie_doen)
                     slaapLiedjeAudio.stop()
                     counter++
                 }
                 1 -> { // Slapen
                     hideViews()
+                    moeheid_bool = true
                     isSleeping = true
-                    semIV.setImageResource(R.drawable.sem_moe)
+                    semIV.setImageResource(R.drawable.sem_moe_kawaii)
                     buttonTukkieDoen.text = getString(R.string.wakker_maken)
                     zzzGIV.visibility = View.VISIBLE
                     slaapLiedjeAudio = MediaPlayer.create(context, R.raw.slaap_kindje_slaap)
@@ -143,7 +190,7 @@ class FirstFragment : Fragment() {
             }
         }
 
-        buttonLekkerDansen = view.findViewById<Button>(R.id.button_lekker_dansen)
+        buttonLekkerDansen = view.findViewById(R.id.button_lekker_dansen)
         buttonLekkerDansen.setOnClickListener {
             if (isSleeping) {
                 Toast.makeText(context, "Sem wil niet dansen tijdens het slapen", Toast.LENGTH_SHORT).show()
@@ -151,42 +198,47 @@ class FirstFragment : Fragment() {
                 hideViews()
                 lekkerPilsjeAudio.stop()
                 dasLekkerAudio.stop()
-                val elfDansUrl = when ((0..6).random()) {
-                    0 -> "https://elfyourself.com?mId=49314"
-                    1 -> "https://elfyourself.com?mId=50183"
-                    2 -> "https://elfyourself.com?mId=50188"
-                    3 -> "https://elfyourself.com?mId=50189"
-                    4 -> "https://elfyourself.com?mId=50192"
-                    5 -> "https://elfyourself.com?mId=50198"
-                    else -> "https://elfyourself.com?mId=50201"
-                }
+                val elfUrlList = listOf(
+                    "https://elfyourself.com?mId=49314",
+                    "https://elfyourself.com?mId=50183",
+                    "https://elfyourself.com?mId=50188",
+                    "https://elfyourself.com?mId=50189",
+                    "https://elfyourself.com?mId=50192",
+                    "https://elfyourself.com?mId=50198",
+                    "https://elfyourself.com?mId=50201"
+                )
+                val elfDansUrl = elfUrlList[(elfUrlList.indices).random()]
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(elfDansUrl))
                 startActivity(browserIntent)
             }
         }
 
-        buttonLeerJapans = view.findViewById<Button>(R.id.button_leer_japans)
+        buttonLeerJapans = view.findViewById(R.id.button_leer_japans)
         buttonLeerJapans.setOnClickListener {
             if (isSleeping) {
                 Toast.makeText(context, "Sem wil niet Japans leren tijdens het slapen", Toast.LENGTH_SHORT).show()
             } else {
                 hideViews()
-                textCloudTV.visibility = View.VISIBLE
+                japans_bool = true
                 lekkerPilsjeAudio.stop()
                 dasLekkerAudio.stop()
-                // todo: hide after a while
-                // todo: meer japanse woorden
-                textCloudTV.text = when ((0..7).random()) {
-                    0 -> "卓球"
-                    1 -> "寿司"
-                    2 -> "私は日本語がとても上手になります"
-                    3 -> "これはduolingoよりも優れています"
-                    4 -> "ching chong kawaii"
-                    5 -> "私はアニメを楽しんでいます"
-                    6 -> "私は経済学を研究しています"
-                    7 -> "ガンビール"
-                    else -> "プレースホルダー"
-                }
+                textCloudTV.visibility = View.VISIBLE
+                val japaneseWords = listOf(
+                        "卓球",
+                        "寿司",
+                        "私は日本語がとても上手になります",
+                        "これはduolingoよりも優れています",
+                        "ching chong kawaii",
+                        "私はアニメを楽しんでいます",
+                        "私は経済学を研究しています",
+                        "ガンビール",
+                        "私の目は他の人と異なって見えます",
+                        "広島",
+                        "誰が春のロールを購入したいですか？",
+                        "ラタタは私のお気に入りのポケモンです"
+                )
+                textCloudTV.text = japaneseWords[(japaneseWords.indices).random()]
+                japans_check.setImageResource(R.drawable.checkmark)
             }
         }
         // todo: add app logo

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Semmiegotchi</string>
+    <string name="app_name">SemMii</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -14,4 +14,7 @@
     <string name="tukkie_doen">Tukkie Doen</string>
     <string name="wakker_maken">Wakker Maken</string>
     <string name="ping_pong">Ping pong enorm lange zin broertje</string>
+    <string name="dorst">Dorst</string>
+    <string name="japans">Japans</string>
+    <string name="moeheid">Moeheid</string>
 </resources>

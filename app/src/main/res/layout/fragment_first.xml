@@ -6,6 +6,142 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
+    <TextView
+        android:id="@+id/textview_dorst"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:background="@color/yellow"
+        tools:layout_editor_absoluteX="368dp"
+        android:gravity="center"
+        android:text="@string/dorst"
+        android:fontFamily="sans-serif-black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imageview_sem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textview_moeheid"
+        />
+
+    <ImageView
+        android:id="@+id/check_dorst"
+        android:layout_width="21dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/checkmark"
+        app:layout_constraintTop_toBottomOf="@id/textview_dorst"
+        app:layout_constraintEnd_toEndOf="@id/textview_dorst"
+        app:layout_constraintStart_toStartOf="@id/textview_dorst"
+        />
+
+    <TextView
+        android:id="@+id/textview_moeheid"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:background="@color/purple_700"
+        tools:layout_editor_absoluteX="368dp"
+        android:gravity="center"
+        android:text="@string/moeheid"
+        android:fontFamily="sans-serif-black"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imageview_sem"
+        app:layout_constraintStart_toEndOf="@id/textview_dorst"
+        app:layout_constraintEnd_toStartOf="@id/textview_japans"
+        />
+
+    <ImageView
+        android:id="@+id/check_moeheid"
+        android:layout_width="21dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/checkmark"
+        app:layout_constraintTop_toBottomOf="@id/textview_moeheid"
+        app:layout_constraintEnd_toEndOf="@id/textview_moeheid"
+        app:layout_constraintStart_toStartOf="@id/textview_moeheid"
+        />
+
+    <TextView
+        android:id="@+id/textview_japans"
+        android:layout_width="90dp"
+        android:layout_height="32dp"
+        android:background="@drawable/textview_border"
+        tools:layout_editor_absoluteX="368dp"
+        android:gravity="center"
+        android:text="@string/japans"
+        android:fontFamily="sans-serif-black"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imageview_sem"
+        app:layout_constraintStart_toEndOf="@id/textview_moeheid"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/check_japans"
+        android:layout_width="21dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/checkmark"
+        app:layout_constraintTop_toBottomOf="@id/textview_japans"
+        app:layout_constraintEnd_toEndOf="@id/textview_japans"
+        app:layout_constraintStart_toStartOf="@id/textview_japans"
+        />
+
+    <ImageView
+        android:id="@+id/imageview_sem"
+        android:layout_width="429dp"
+        android:layout_height="414dp"
+        android:src="@drawable/sem_kawaii"
+        app:layout_constraintTop_toBottomOf="@id/textview_moeheid"
+        app:layout_constraintBottom_toTopOf="@+id/button_gun_bierie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/zzz_gif"
+        android:layout_width="165dp"
+        android:layout_height="155dp"
+        android:src="@drawable/zzz"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/imageview_sem"
+        app:layout_constraintTop_toTopOf="@id/imageview_sem"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/imageview_textcloud"
+        android:layout_width="225dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="28dp"
+        android:paddingStart="40dp"
+        android:paddingBottom="18dp"
+        android:visibility="gone"
+        android:layout_height="114dp"
+        android:background="@drawable/text_cloud"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:lines="2"
+        android:text="@string/ping_pong"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="@id/imageview_sem"
+        app:layout_constraintTop_toTopOf="@id/imageview_sem" />
+
+    <ImageView
+        android:id="@+id/bierie"
+        android:layout_width="145dp"
+        android:layout_height="141dp"
+        android:foregroundGravity="center"
+        android:visibility="gone"
+        android:rotation="0"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:src="@drawable/bierie"
+        app:layout_constraintBottom_toBottomOf="@id/imageview_sem"
+        app:layout_constraintStart_toStartOf="@id/imageview_sem"
+        />
+
     <Button
         android:id="@+id/button_gun_bierie"
         android:layout_width="wrap_content"
@@ -48,59 +184,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_gun_bierie"
         app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <ImageView
-        android:id="@+id/imageview_sem"
-        android:layout_width="429dp"
-        android:layout_height="414dp"
-        android:src="@drawable/sem"
-        app:layout_constraintBottom_toTopOf="@+id/button_gun_bierie"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/zzz_gif"
-        android:layout_width="165dp"
-        android:layout_height="155dp"
-        android:src="@drawable/zzz"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@id/imageview_sem"
-        app:layout_constraintTop_toTopOf="@id/imageview_sem"
-        />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/imageview_textcloud"
-        android:layout_width="225dp"
-        android:paddingTop="8dp"
-        android:paddingRight="28dp"
-        android:paddingLeft="40dp"
-        android:paddingBottom="18dp"
-        android:visibility="gone"
-        android:layout_height="114dp"
-        android:background="@drawable/text_cloud"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:lines="2"
-        android:text="@string/ping_pong"
-        android:textColor="@color/black"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toEndOf="@id/imageview_sem"
-        app:layout_constraintTop_toTopOf="@id/imageview_sem" />
-
-    <ImageView
-        android:id="@+id/bierie"
-        android:layout_width="145dp"
-        android:layout_height="141dp"
-        android:foregroundGravity="center"
-        android:visibility="gone"
-        android:rotation="0"
-        android:interpolator="@android:anim/linear_interpolator"
-        android:src="@drawable/bierie"
-        app:layout_constraintBottom_toBottomOf="@id/imageview_sem"
-        app:layout_constraintStart_toStartOf="@id/imageview_sem"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
